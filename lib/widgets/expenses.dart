@@ -20,11 +20,18 @@ class Expenses extends StatefulWidget {
 class _ExpensesState extends State<Expenses> {
   // This is state class
 
-  final List<Expense> _registeredExpenses =
-      [
-        Expense(title: 'Upaadhyaksha', amount: 480, date:DateTime.now() , category: Category.leisure),
-        Expense(title: 'Petrol', amount: 220, date:DateTime.now() , category: Category.travel)
-      ]; // this list has the expenses list
+  final List<Expense> _registeredExpenses = [
+    Expense(
+        title: 'Upaadhyaksha',
+        amount: 480,
+        date: DateTime.now(),
+        category: Category.leisure),
+    Expense(
+        title: 'Petrol',
+        amount: 220,
+        date: DateTime.now(),
+        category: Category.travel)
+  ]; // this list has the expenses list
 
   void _openAddExpensesOverlay() {
     showModalBottomSheet(
@@ -64,6 +71,9 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final length = MediaQuery.of(context).size.height;
+
     Widget mainContent = const Center(
       child: Text('Add New Expenses!'),
     );
@@ -76,20 +86,30 @@ class _ExpensesState extends State<Expenses> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Expense Tracker'),
-          actions: [
-            IconButton(
-                onPressed: _openAddExpensesOverlay, icon: const Icon(Icons.add))
-          ],
-        ),
-        body: Column(
-          children: [
-            Chart(expenses: _registeredExpenses),
-            Expanded(
-                child:
-                    mainContent), // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
-          ],
-        ));
+      appBar: AppBar(
+        title: const Text('Flutter Expense Tracker'),
+        actions: [
+          IconButton(
+              onPressed: _openAddExpensesOverlay, icon: const Icon(Icons.add))
+        ],
+      ),
+      body: width < 600
+          ? Column(
+              children: [
+                Chart(expenses: _registeredExpenses),
+                Expanded(
+                    child:
+                        mainContent), // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
+              ],
+            )
+          : Row(
+              children: [
+                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(
+                    child:
+                        mainContent), // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
+              ],
+            ),
+    );
   }
 }
