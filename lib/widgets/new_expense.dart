@@ -77,91 +77,98 @@ class _NewExpenseState extends State<NewExpense> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
-        child: Column(
-          children: [
-            TextField(
-              controller: _titleController,
-              maxLength: 50,
-              decoration: const InputDecoration(
-                label: Text('Title'),
-              ),
-            ),
-            Row(
+    final keyBoardSpace = MediaQuery.of(context).viewInsets.bottom;// used to get how much space is overlapped by something
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: SingleChildScrollView( //this widget is added because the input fields should be scrollable in the case of overlapping by keyboard
+        child: Padding(
+            padding:  EdgeInsets.fromLTRB(16, 16, 16, keyBoardSpace+16),
+            child: Column(
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: _amountController,
-                    maxLength: 5,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      prefixText: '\₹ ',
-                      label: Text('Amount'),
+                TextField(
+                  controller: _titleController,
+                  maxLength: 50,
+                  decoration: const InputDecoration(
+                    label: Text('Title'),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: _amountController,
+                        maxLength: 5,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          prefixText: '\₹ ',
+                          label: Text('Amount'),
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(_selectedDate == null
+                              ? 'No date selected'
+                              : formatter.format(
+                                  _selectedDate!)), //! is added to force the dart to output as we have chekcing for null value before only
+                          IconButton(
+                              onPressed: _presentDatePicker,
+                              icon: const Icon(Icons.calendar_month))
+                        ],
+                      ),
+                    )
+                  ],
                 ),
-                const SizedBox(
-                  height: 16,
+                Row(
+                  children: [
+                    Expanded(
+                      child: DropdownButton(
+                          value: _selectedCategory,
+                          items: Category.values
+                              .map(
+                                (category) => DropdownMenuItem(
+                                  value: category,
+                                  child: Text(
+                                    category.name.toUpperCase(),
+                                  ),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (null == value) {
+                              return;
+                            }
+                            setState(() {
+                              _selectedCategory = value;
+                            });
+                          }),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _submitExpenseData();
+                        },
+                        child: const Text('Save Expense'),
+                      ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(_selectedDate == null
-                          ? 'No date selected'
-                          : formatter.format(
-                              _selectedDate!)), //! is added to force the dart to output as we have chekcing for null value before only
-                      IconButton(
-                          onPressed: _presentDatePicker,
-                          icon: const Icon(Icons.calendar_month))
-                    ],
-                  ),
-                )
               ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: DropdownButton(
-                      value: _selectedCategory,
-                      items: Category.values
-                          .map(
-                            (category) => DropdownMenuItem(
-                              value: category,
-                              child: Text(
-                                category.name.toUpperCase(),
-                              ),
-                            ),
-                          )
-                          .toList(),
-                      onChanged: (value) {
-                        if (null == value) {
-                          return;
-                        }
-                        setState(() {
-                          _selectedCategory = value;
-                        });
-                      }),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Cancel'),
-                ),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _submitExpenseData();
-                    },
-                    child: const Text('Save Expense'),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ));
+            )),
+      ),
+    );
   }
 }
