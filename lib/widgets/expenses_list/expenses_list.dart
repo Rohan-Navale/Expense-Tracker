@@ -20,7 +20,7 @@ class ExpensesList extends StatelessWidget {
           .length, // Listview function will be called expenses.length of times
       itemBuilder: (ctx, index) => Dismissible(
           background: Container(
-            color: Theme.of(context).colorScheme.error.withOpacity(0.75),
+            color: Theme.of(context).colorScheme.error,//.withOpacity(1),
             margin: EdgeInsets.symmetric(
                 horizontal: Theme.of(context).cardTheme.margin!.horizontal,
                 vertical: 8),
