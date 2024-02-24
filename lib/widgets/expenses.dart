@@ -30,21 +30,21 @@ class _ExpensesState extends State<Expenses> {
     //     title: 'Petrol',
     //     amount: 220,
     //     date: DateTime.now(),
-    //     category: Category.Travel)
+    //     category: Category.Travel),
   ]; // this list has the expenses list
 
-void _openAddExpensesOverlay() {
-  showModalBottomSheet(
-    useSafeArea: true,
-    isScrollControlled: true,
-    context: context,
-    builder: (ctx) => FractionallySizedBox(
-      heightFactor: 0.75, // This will make the overlay take half of the screen
-      child: NewExpense(onAddExpense: _addExpense),
-    ),
-  );
-}
-
+  void _openAddExpensesOverlay() {
+    showModalBottomSheet(
+      useSafeArea: true,
+      isScrollControlled: true,
+      context: context,
+      builder: (ctx) => FractionallySizedBox(
+        heightFactor:
+            0.75, // This will make the overlay take half of the screen
+        child: NewExpense(onAddExpense: _addExpense),
+      ),
+    );
+  }
 
   void _addExpense(Expense expense) {
     setState(() {
@@ -92,7 +92,10 @@ void _openAddExpensesOverlay() {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Expense Tracker', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+        title: const Text(
+          'Flutter Expense Tracker',
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
         // actions: [
         //   IconButton(
         //       onPressed: _openAddExpensesOverlay, icon: const Icon(Icons.add))
@@ -102,29 +105,35 @@ void _openAddExpensesOverlay() {
           ? Column(
               children: [
                 Chart(expenses: _registeredExpenses),
-                Expanded(
-                    child:
-                        mainContent),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: FloatingActionButton(onPressed: _openAddExpensesOverlay, child: Icon(Icons.add),),
-                          )) // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
+                Expanded(child: mainContent),
+                Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: FilledButton.icon(
+                      onPressed: _openAddExpensesOverlay,
+                      style: FilledButton.styleFrom(
+                        textStyle: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      icon: const Icon(Icons.add),
+                      label: const Text("Add Expense"),
+                    )) // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
               ],
             )
           : Row(
               children: [
                 Expanded(child: Chart(expenses: _registeredExpenses)),
-                Expanded(
-                    child:
-                        mainContent),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          child: Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: FloatingActionButton(onPressed: _openAddExpensesOverlay, child: Icon(Icons.add),),
-                          )) // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
+                Expanded(child: mainContent),
+                Container(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: FloatingActionButton(
+                        onPressed: _openAddExpensesOverlay,
+                        child: Icon(Icons.add),
+                      ),
+                    )) // ExpensesList class[in widgets->expensesList->expenses_list] is called by sending Lift of expenses in arguments
               ],
             ),
     );
