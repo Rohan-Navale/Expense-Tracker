@@ -21,20 +21,21 @@ class _ExpensesState extends State<Expenses> {
   // This is state class
 
   final List<Expense> _registeredExpenses = [
-    Expense(
-        title: 'Movie',
-        amount: 480,
-        date: DateTime.now(),
-        category: Category.Leisure),
-    Expense(
-        title: 'Petrol',
-        amount: 220,
-        date: DateTime.now(),
-        category: Category.Travel)
+    // Expense(
+    //     title: 'Movie',
+    //     amount: 480,
+    //     date: DateTime.now(),
+    //     category: Category.Leisure),
+    // Expense(
+    //     title: 'Petrol',
+    //     amount: 220,
+    //     date: DateTime.now(),
+    //     category: Category.Travel)
   ]; // this list has the expenses list
 
   void _openAddExpensesOverlay() {
     showModalBottomSheet(
+      
       useSafeArea: true,
       isScrollControlled: true,
       context: context,
