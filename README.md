@@ -14,8 +14,12 @@ Expense Tracker is a Flutter app designed to simplify expense tracking for day-t
 ## Demo
 
 In-app screenshots
-![IMG-20240224-WA0019](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/c71ce2f4-a5d6-4d11-b5cb-af7e5de6e260)
-![IMG-20240224-WA0020](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/2a66bb52-13db-418b-a7b6-b0f78271730f) ![WhatsApp Image 2024-02-24 at 14 00 17_0a5a98ab](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/186ed242-9771-4f6a-bcf2-b7442507b094)
+
+![Frame 3384](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/2188dae9-3a14-4e9e-91d9-fbb90439450f)
+![Frame 3381](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/515956c2-1c1b-426e-8235-41c2b54bb184) ![Frame 3382](https://github.com/Rohan-Navale/Expense-Tracker/assets/108330627/7c331073-f008-4136-a9e0-4dd803199120)
+ 
+
+
 
 
 
