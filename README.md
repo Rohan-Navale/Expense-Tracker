@@ -2,12 +2,15 @@
 
 Expense Tracker is a Flutter app designed to simplify expense tracking for day-to-day life. It helps users manage their expenses across four main categories: Food, Leisure, Work, and Travel. With Expense Tracker, users can easily list down their expenses, including details such as date, amount, category, and name of the expense. The app provides a clear visualization of expenses using a bar graph chart, allowing users to gain insights into their spending habits at a glance.
 
-# Features
-    - Chart Bar graph to track expenses
-    - Slide left/right to delete expense
-    - Both light & Dark theme enabled. Runs in default system settings
-    - Validations in case of empty expense input
-    - Works in both portrait and landscape mode
+
+## Features
+
+- Chart Bar graph to track expenses
+- Slide left/right to delete expense
+- Both light & Dark theme enabled. Runs in default system settings
+- Validations in case of empty expense input
+- Works in both portrait and landscape mode
+  
 
 ## Demo
 
